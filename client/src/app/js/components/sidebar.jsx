@@ -7,16 +7,20 @@ import FontIcon from 'material-ui/FontIcon';
 
 class Sidebar extends Component {
 
+  constructor(props) {
+    super(props);
+  }
+
   selectAssignment(event) {
   }
 
   render() {
 
     return (
-      <Drawer open={true} containerStyle={{marginTop: '64px'}}>
-        <IconButton tooltip="Font Icon">
-          <FontIcon className="mi mi-face" />
-        </IconButton>
+      <Drawer open={this.props.show} containerStyle={{marginTop: '64px'}}>
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+          <h3 style={{margin: '16px 8px 8px'}}>Assignments</h3>
+        </div>
         <MenuItem>Menu Item</MenuItem>
         <MenuItem>Menu Item 2</MenuItem>
       </Drawer>

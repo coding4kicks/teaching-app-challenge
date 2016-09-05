@@ -14,7 +14,7 @@ class Dashboard extends Component {
 
     return (
       <div className="row">
-        <Sidebar></Sidebar>
+        <Sidebar show={this.props.sidebar}></Sidebar>
         Test
       </div>
     );
@@ -22,7 +22,10 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
-  return { users: state.users.all };
+  return {
+    users: state.users.all,
+    sidebar: state.assignments.sidebar
+  };
 }
 
 export default connect(mapStateToProps, { getUsers })(Dashboard);

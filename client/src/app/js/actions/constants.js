@@ -10,3 +10,8 @@ export const UPDATE_USER = 'UPDATE_USER';
 export const DELETE_USER = 'DELETE_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
+
+// assignments
+export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
+export const GET_ASSIGNMENTS = 'GET_ASSIGNMENTS';
+export const GET_SUBMISSIONS = 'GET_SUBMISSIONS';

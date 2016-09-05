@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { loginUser, logoutUser } from '../actions/users';
+import { toggleSidebar } from '../actions/assignments';
 import AppBar from 'material-ui/AppBar';
 
 class AppBarContainer extends Component {
@@ -21,6 +22,10 @@ class AppBarContainer extends Component {
   handleLogoutClick(event) {
     event.preventDefault();
     this.props.logoutUser();
+  }
+
+  toggleSidebar(event) {
+    this.props.toggleSidebar();
   }
 
   render() {
@@ -61,10 +66,11 @@ class AppBarContainer extends Component {
       <AppBar
         title="Teaching App"
         iconClassNameRight="muidocs-icon-navigation-expand-more"
+        onLeftIconButtonTouchTap={(e) => this.toggleSidebar(e)}
       />)
   }
 }
 
 const mapStateToProps = ({users: {currentUser}}) => ({currentUser});
 
-export default connect(mapStateToProps, { loginUser, logoutUser })(AppBarContainer);
+export default connect(mapStateToProps, { loginUser, logoutUser, toggleSidebar })(AppBarContainer);
