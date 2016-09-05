@@ -7,12 +7,19 @@ import {resetError} from './error';
 import {
   GET_ASSIGNMENTS,
   GET_SUBMISSIONS,
-  TOGGLE_SIDEBAR
+  TOGGLE_SIDEBAR,
+  SELECT_ASSIGNMENT
 } from './constants';
 
 export function toggleSidebar() {
   return (dispatch) => {
     dispatch({type: TOGGLE_SIDEBAR});
+  }
+}
+
+export function selectAssignment(id) {
+  return (dispatch) => {
+    dispatch({type: SELECT_ASSIGNMENT, id: id})
   }
 }
 
@@ -27,6 +34,12 @@ export function getAssignments(page) {
       })
         .then(response => response.json())
         .then(json => _.isEmpty(json.errors) ? json : Promise.reject(json.errors[0]))
+        .then(payload => {
+          if (payload.length > 0) {
+            dispatch({id: payload[0].id, type: SELECT_ASSIGNMENT});
+          }
+          return payload;
+        })
         .then(payload => {dispatch({payload, type: GET_ASSIGNMENTS})})
         .catch(exception => dispatch({
           type: ERROR,

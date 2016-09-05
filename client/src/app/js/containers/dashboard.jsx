@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUsers } from '../actions/users';
+import { getAssignments, selectAssignment} from '../actions/assignments';
 import { Link } from 'react-router';
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -11,6 +12,7 @@ import Viewer from '../components/viewer';
 class Dashboard extends Component {
   componentWillMount() {
     this.props.getUsers();
+    this.props.getAssignments();
   }
 
   getChildContext() {
@@ -22,7 +24,7 @@ class Dashboard extends Component {
 
     return (
       <div className="row">
-        <Sidebar show={this.props.sidebar}></Sidebar>
+        <Sidebar show={this.props.sidebar} items={this.props.assignments} itemClick={this.props.selectAssignment}></Sidebar>
         <Viewer sidebar={this.props.sidebar}></Viewer>
       </div>
     );
@@ -36,8 +38,9 @@ Dashboard.childContextTypes = {
 function mapStateToProps(state) {
   return {
     users: state.users.all,
-    sidebar: state.assignments.sidebar
+    sidebar: state.assignments.sidebar,
+    assignments: state.assignments.assignments
   };
 }
 
-export default connect(mapStateToProps, { getUsers })(Dashboard);
+export default connect(mapStateToProps, { getUsers, getAssignments, selectAssignment })(Dashboard);

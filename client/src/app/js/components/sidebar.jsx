@@ -11,7 +11,30 @@ class Sidebar extends Component {
     super(props);
   }
 
-  selectAssignment(event) {
+  parseDate(date) {
+    const dateObj = new Date(date);
+    const month = dateObj.getMonth();
+    const day = dateObj.getDay();
+    return month + '/' + day;
+  }
+
+  menuItemClick(id) {
+
+  }
+
+  renderMenuItems() {
+    const items = [];
+    this.props.items.forEach((item) => {
+      const menuItem = (
+        <MenuItem key={item.id}
+                  primaryText={item.title}
+                  secondaryText={this.parseDate(item.due_at)}
+                  onClick={(e) => this.props.itemClick(item.id)}>
+        </MenuItem>
+      );
+      items.push(menuItem);
+    });
+    return items;
   }
 
   render() {
@@ -21,8 +44,7 @@ class Sidebar extends Component {
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
           <h3 style={{margin: '16px 8px 8px', fontWeight: 400}}>Assignments</h3>
         </div>
-        <MenuItem>Menu Item</MenuItem>
-        <MenuItem>Menu Item 2</MenuItem>
+        {this.renderMenuItems()}
       </Drawer>
     );
   }
