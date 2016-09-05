@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Slider from 'material-ui/Slider';
+import Details from './details';
 
 
 class Viewer extends Component {
@@ -13,7 +14,6 @@ class Viewer extends Component {
   }
 
   render() {
-
     const viewerStyle = {padding: '16px', transition: 'margin .28s'};
     if (this.props.sidebar) {
       viewerStyle.marginLeft = '256px';
@@ -23,29 +23,17 @@ class Viewer extends Component {
       backgroundColor: this.context.muiTheme.palette.primary2Color
     };
 
-    const styles = {
-      headline: {
-        fontSize: 24,
-        paddingTop: 16,
-        marginBottom: 12,
-        fontWeight: 400,
-      },
-    };
+    const headerStyle = {fontWeight: 400};
 
     return (
         <div style={viewerStyle}>
           <Tabs>
             <Tab label="Details" style={tabStyle}>
-              <div>
-                <h2 style={styles.headline}>Details</h2>
-                <p>
-                  This is an example tab.
-                </p>
-              </div>
+              <Details item={this.props.item}></Details>
             </Tab>
             <Tab label="Submissions" style={tabStyle}>
               <div>
-                <h2 style={styles.headline}>Submissions</h2>
+                <h2 style={headerStyle}>Submissions</h2>
                 <p>
                   This is another example tab.
                 </p>

@@ -19,13 +19,21 @@ class Dashboard extends Component {
     return {muiTheme: getMuiTheme(baseTheme)};
   }
 
+  getCurrentAssignment() {
+    if (this.props.assignments.length < 1) return null;
+    if (!this.props.currentAssignment) return null;
+    const arr = this.props.assignments.filter((assignment) => assignment.id == this.props.currentAssignment);
+    if (arr.length < 1) return null;
+    return arr[0];
+  }
+
   render() {
     const { users } = this.props;
 
     return (
       <div className="row">
         <Sidebar show={this.props.sidebar} items={this.props.assignments} itemClick={this.props.selectAssignment}></Sidebar>
-        <Viewer sidebar={this.props.sidebar}></Viewer>
+        <Viewer sidebar={this.props.sidebar} item={this.getCurrentAssignment()}></Viewer>
       </div>
     );
   }
@@ -39,7 +47,8 @@ function mapStateToProps(state) {
   return {
     users: state.users.all,
     sidebar: state.assignments.sidebar,
-    assignments: state.assignments.assignments
+    assignments: state.assignments.assignments,
+    currentAssignment: state.assignments.currentAssignment
   };
 }
 
