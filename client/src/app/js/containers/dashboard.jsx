@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUsers } from '../actions/users';
 import { Link } from 'react-router';
+import Sidebar from '../components/sidebar';
 
 class Dashboard extends Component {
   componentWillMount() {
@@ -13,7 +14,8 @@ class Dashboard extends Component {
 
     return (
       <div className="row">
-      Test
+        <Sidebar></Sidebar>
+        Test
       </div>
     );
   }

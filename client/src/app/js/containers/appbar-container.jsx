@@ -59,7 +59,7 @@ class AppBarContainer extends Component {
 
     return (
       <AppBar
-        title="Title"
+        title="Teaching App"
         iconClassNameRight="muidocs-icon-navigation-expand-more"
       />)
   }
