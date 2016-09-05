@@ -19,7 +19,7 @@ class Sidebar extends Component {
     return (
       <Drawer open={this.props.show} containerStyle={{marginTop: '64px'}}>
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-          <h3 style={{margin: '16px 8px 8px'}}>Assignments</h3>
+          <h3 style={{margin: '16px 8px 8px', fontWeight: 400}}>Assignments</h3>
         </div>
         <MenuItem>Menu Item</MenuItem>
         <MenuItem>Menu Item 2</MenuItem>
