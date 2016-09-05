@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getUsers } from '../actions/users';
 import { Link } from 'react-router';
 import Sidebar from '../components/sidebar';
+import Viewer from '../components/viewer';
 
 class Dashboard extends Component {
   componentWillMount() {
@@ -15,7 +16,7 @@ class Dashboard extends Component {
     return (
       <div className="row">
         <Sidebar show={this.props.sidebar}></Sidebar>
-        Test
+        <Viewer sidebar={this.props.sidebar}></Viewer>
       </div>
     );
   }
