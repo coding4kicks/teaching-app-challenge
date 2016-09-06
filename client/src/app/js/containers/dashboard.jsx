@@ -17,6 +17,12 @@ class Dashboard extends Component {
     if (assignmentId) this.props.selectAssignment(this.props.params.id);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const newId = nextProps.params.id;
+    const currId = this.props.currentAssignment;
+    if (newId && currId && newId != currId)  this.props.selectAssignment(newId);
+  }
+
   getChildContext() {
     return {muiTheme: getMuiTheme(baseTheme)};
   }
