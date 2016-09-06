@@ -4,8 +4,18 @@ import { Link } from 'react-router';
 import { loginUser, logoutUser } from '../actions/users';
 import { toggleSidebar } from '../actions/assignments';
 import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import NewAssignment from '../components/new-assignment';
 
 class AppBarContainer extends Component {
+
+  state = {
+    newAssignmentOpen: false,
+  };
+
   handleLogin(event) {
     event.preventDefault();
 
@@ -28,47 +38,42 @@ class AppBarContainer extends Component {
     this.props.toggleSidebar();
   }
 
+  newAssignment(event) {
+    this.setState({newAssignmentOpen: true});
+  }
+
+  createAssignment(assignment) {
+    console.log('create assignment');
+    this.setState({newAssignmentOpen: false});
+    // TODO: validate assignment fields and dispatch CREATE_ASSIGNMENT action
+  }
+
   render() {
     const {currentUser} = this.props;
 
-    //if (currentUser) {
-    //  return (
-    //    <div className="row">
-    //      <div className="twelve columns">
-    //        <div className="u-pull-right">
-    //          Logged in as <strong>{currentUser.username}</strong> ● <Link to="profile">Edit Profile</Link> ● <a href="#" onClick={this.handleLogoutClick.bind(this)}>Logout</a>
-    //        </div>
-    //      </div>
-    //    </div>
-    //  )
-    //}
-    //
-    //return (
-    //  <div className="row">
-    //    <div className="twelve columns">
-    //      <form onSubmit={this.handleLogin.bind(this)}>
-    //        <div className="four columns">
-    //          <input type="text" className="u-full-width" placeholder="Username" ref="username" />
-    //        </div>
-    //        <div className="four columns">
-    //          <input type="password" className="u-full-width" placeholder="Password" ref="password" />
-    //        </div>
-    //        <div className="four columns">
-    //          <input type="submit" className="u-full-width button-primary" value="Login"/>
-    //        </div>
-    //      </form>
-    //      <hr />
-    //    </div>
-    //  </div>
-    //);
-
     return (
-      <AppBar
-        title="Teaching App"
-        style={{position: 'fixed'}}
-        iconClassNameRight="muidocs-icon-navigation-expand-more"
-        onLeftIconButtonTouchTap={(e) => this.toggleSidebar(e)}
-      />)
+      <div>
+        <AppBar
+          title="Teaching App"
+          style={{position: 'fixed'}}
+          onLeftIconButtonTouchTap={(e) => this.toggleSidebar(e)}
+          iconElementRight={
+            <IconMenu
+              iconButtonElement={
+                <IconButton><MoreVertIcon /></IconButton>
+              }
+              targetOrigin={{horizontal: 'right', vertical: 'top'}}
+              anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+            >
+              <MenuItem primaryText="New Assignment" onClick={(e) => this.newAssignment()}/>
+              <MenuItem primaryText="Sign out" />
+            </IconMenu>
+          }/>
+        <NewAssignment open={this.state.newAssignmentOpen} onRequestClose={this.createAssignment.bind(this)}>
+
+        </NewAssignment>
+      </div>
+    )
   }
 }
 
