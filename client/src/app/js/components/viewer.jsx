@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Slider from 'material-ui/Slider';
 import Details from './details';
+import ItemList from './item-list';
 
 
 class Viewer extends Component {
@@ -32,12 +33,7 @@ class Viewer extends Component {
               <Details item={this.props.item}></Details>
             </Tab>
             <Tab label="Submissions" style={tabStyle}>
-              <div>
-                <h2 style={headerStyle}>Submissions</h2>
-                <p>
-                  This is another example tab.
-                </p>
-              </div>
+              <ItemList items={this.props.items}></ItemList>
             </Tab>
           </Tabs>
         </div>

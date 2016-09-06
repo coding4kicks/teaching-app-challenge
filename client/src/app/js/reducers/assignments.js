@@ -10,7 +10,7 @@ export default function(state = INITIAL_STATE, action) {
       return {...state, currentAssignment: action.id}
     case GET_SUBMISSIONS:
       const submissions = Object.assign({}, state.submissions, {
-        [action.id]: actions.payload.data
+        [action.id]: action.payload
       });
       return { ...state, submissions: submissions };
     case GET_ASSIGNMENTS:
