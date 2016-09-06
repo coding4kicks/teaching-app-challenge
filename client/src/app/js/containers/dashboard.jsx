@@ -12,7 +12,9 @@ import Viewer from '../components/viewer';
 class Dashboard extends Component {
   componentWillMount() {
     this.props.getUsers();
-    this.props.getAssignments();
+    const assignmentId = this.props.params.id;
+    this.props.getAssignments(assignmentId);
+    if (assignmentId) this.props.selectAssignment(this.props.params.id);
   }
 
   getChildContext() {
@@ -37,9 +39,16 @@ class Dashboard extends Component {
     const { users } = this.props;
 
     return (
-      <div className="row">
-        <Sidebar show={this.props.sidebar} items={this.props.assignments} itemClick={this.props.selectAssignment}></Sidebar>
-        <Viewer sidebar={this.props.sidebar} item={this.getCurrentAssignment()} items={this.getCurrentSubmissions()}></Viewer>
+      <div style={{paddingTop: '64px'}}>
+        <Sidebar show={this.props.sidebar}
+                 items={this.props.assignments}
+                 itemClick={this.props.selectAssignment}>
+
+        </Sidebar>
+        <Viewer sidebar={this.props.sidebar}
+                item={this.getCurrentAssignment()}
+                items={this.getCurrentSubmissions()}>
+        </Viewer>
       </div>
     );
   }

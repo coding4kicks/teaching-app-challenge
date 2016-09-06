@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
@@ -22,11 +23,14 @@ class Sidebar extends Component {
     const items = [];
     this.props.items.forEach((item) => {
       const menuItem = (
-        <MenuItem key={item.id}
-                  primaryText={item.title}
-                  secondaryText={this.parseDate(item.due_at)}
-                  onClick={(e) => this.props.itemClick(item.id)}>
-        </MenuItem>
+        <Link key={item.id}
+              to={"/assignments/" + item.id}
+              style={{textDecoration: 'none'}}>
+          <MenuItem primaryText={item.title}
+                    secondaryText={this.parseDate(item.due_at)}
+                    onClick={(e) => this.props.itemClick(item.id)}>
+          </MenuItem>
+        </Link>
       );
       items.push(menuItem);
     });

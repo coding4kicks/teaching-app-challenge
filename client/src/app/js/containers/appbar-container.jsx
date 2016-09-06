@@ -65,6 +65,7 @@ class AppBarContainer extends Component {
     return (
       <AppBar
         title="Teaching App"
+        style={{position: 'fixed'}}
         iconClassNameRight="muidocs-icon-navigation-expand-more"
         onLeftIconButtonTouchTap={(e) => this.toggleSidebar(e)}
       />)

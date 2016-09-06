@@ -11,6 +11,7 @@ import UsersNew from './components/users/new';
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Dashboard} />
+    <Route path="assignments/:id" component={Dashboard} />
     <Route path="users/:username/show" component={UsersShow} />
     <Route path="profile" component={UsersEdit} />
     <Route path="users/new" component={UsersNew} />

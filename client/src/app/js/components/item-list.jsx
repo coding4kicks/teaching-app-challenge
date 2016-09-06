@@ -31,7 +31,7 @@ class ItemList extends Component {
           actAsExpander={true}
           showExpandableButton={true}
         />
-        <CardTitle title={this.parseDate(item.submitted_at)} subtitle="Card subtitle" expandable={true} />
+        <CardTitle title={this.parseDate(item.submitted_at)} expandable={true} />
         <CardText expandable={true}>
           {item.content}
         </CardText>

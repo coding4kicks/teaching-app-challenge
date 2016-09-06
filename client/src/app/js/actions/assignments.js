@@ -26,7 +26,7 @@ export function selectAssignment(id) {
 }
 
 // TODO: pagination
-export function getAssignments(page) {
+export function getAssignments(idSet) {
 
   return (dispatch) => {
     dispatch(resetError());
@@ -37,13 +37,13 @@ export function getAssignments(page) {
         .then(response => response.json())
         .then(json => _.isEmpty(json.errors) ? json : Promise.reject(json.errors[0]))
         .then(payload => {
-          if (payload.length > 0) {
+          if (!idSet && payload.length > 0) {
             dispatch({id: payload[0].id, type: SELECT_ASSIGNMENT});
           }
           return payload;
         })
         .then(payload => {
-          if (payload.length > 0) {
+          if (!idSet && payload.length > 0) {
             dispatch(getSubmissions(payload[0].id));
           }
           return payload;
