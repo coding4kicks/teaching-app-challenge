@@ -16,7 +16,7 @@ class Details extends Component {
     const year = dateObj.getFullYear();
     const hours = dateObj.getHours();
     const minutes = dateObj.getMinutes();
-    return 'Due on ' + month + '/' + day + '/' + year + ' at +' + hours + ':' + minutes;
+    return 'Due on ' + month + '/' + day + '/' + year + ' at ' + hours + ':' + minutes;
   }
 
   render() {

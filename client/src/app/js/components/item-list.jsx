@@ -7,7 +7,6 @@ class ItemList extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {expanded: false};
   }
 
   parseDate(date) {
@@ -17,23 +16,13 @@ class ItemList extends Component {
     const year = dateObj.getFullYear();
     const hours = dateObj.getHours();
     const minutes = dateObj.getMinutes();
-    return 'Submitted on ' + month + '/' + day + '/' + year + ' at +' + hours + ':' + minutes;
-  }
-
-  isExpanded(id) {
-    return false;
-  }
-
-  toggleExpand(id) {
-
+    return 'Submitted on ' + month + '/' + day + '/' + year + ' at ' + hours + ':' + minutes;
   }
 
   renderCard(item) {
 
     return (
       <Card key={item.id}
-            expanded={this.isExpanded(item.id)}
-            onExpandChange={this.toggleExpand(item.id)}
             style={{margin: "16px 0"}}>
         <CardHeader
           title={item.creator.first_name + ' ' + item.creator.last_name}

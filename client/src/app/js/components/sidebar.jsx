@@ -18,10 +18,6 @@ class Sidebar extends Component {
     return month + '/' + day;
   }
 
-  menuItemClick(id) {
-
-  }
-
   renderMenuItems() {
     const items = [];
     this.props.items.forEach((item) => {
