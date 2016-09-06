@@ -7,6 +7,14 @@ Files Added:
 actions/assignments.js
 components/details.jsx
 components/item-list.jsx
+components/new-assignment.js
+components/sidebar.jsx
+components/viewer.jsx
+containers/appbar-container.jsx
+containers/dashboard.jsx
+reducers/assignments.js
+
+Modifications to multiple files.
 
 
 To Run
