@@ -7,6 +7,7 @@ class ItemList extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {expanded: false};
   }
 
   parseDate(date) {
@@ -19,12 +20,21 @@ class ItemList extends Component {
     return 'Submitted on ' + month + '/' + day + '/' + year + ' at +' + hours + ':' + minutes;
   }
 
+  isExpanded(id) {
+    return false;
+  }
+
+  toggleExpand(id) {
+
+  }
+
   renderCard(item) {
-    return (<div key={item.id}>Something</div>)
+
     return (
       <Card key={item.id}
-            expanded={this.state.expanded}
-            onExpandChange={this.handleExpandChange}>
+            expanded={this.isExpanded(item.id)}
+            onExpandChange={this.toggleExpand(item.id)}
+            style={{margin: "16px 0"}}>
         <CardHeader
           title={item.creator.first_name + ' ' + item.creator.last_name}
           subtitle={item.creator.username}
@@ -32,7 +42,7 @@ class ItemList extends Component {
           actAsExpander={true}
           showExpandableButton={true}
         />
-        <CardTitle title={parseDate(item.submitted_at)} subtitle="Card subtitle" expandable={true} />
+        <CardTitle title={this.parseDate(item.submitted_at)} subtitle="Card subtitle" expandable={true} />
         <CardText expandable={true}>
           {item.content}
         </CardText>
@@ -46,8 +56,6 @@ class ItemList extends Component {
 
   renderCards() {
     const cards = this.props.items.map((item) => this.renderCard(item));
-    console.log('here');
-    console.log(cards);
     return cards;
   }
 
